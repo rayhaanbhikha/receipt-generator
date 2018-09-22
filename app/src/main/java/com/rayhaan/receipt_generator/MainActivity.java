@@ -1,5 +1,6 @@
 package com.rayhaan.receipt_generator;
 
+import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,9 +48,8 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                // dialog box to appear with yes and no question.
-                removeItemFromInvoiceList(position);
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                confirmDeleteDialog(position);
                 return true;
             }
         });
@@ -99,4 +99,22 @@ public class MainActivity extends AppCompatActivity {
         calculateTotal();
     }
 
+    public void confirmDeleteDialog(final int position) {
+        AlertDialog.Builder removeDialog = new AlertDialog.Builder(MainActivity.this);
+        removeDialog.setMessage("Confirm removal of item");
+        removeDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        removeDialog.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                removeItemFromInvoiceList(position);
+            }
+        });
+        AlertDialog dialog = removeDialog.create();
+        dialog.show();
+    }
 }
