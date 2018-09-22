@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Please fill in empty fields", Toast.LENGTH_LONG).show();
         } else  {
             dialog.cancel();
-            Toast.makeText(MainActivity.this, "ITEM SUBMITTED", Toast.LENGTH_SHORT).show();
             addItemToInvoiceList(price, desc);
         }
     }
