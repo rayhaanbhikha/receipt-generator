@@ -18,7 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/invoice_items"
-        app:layout_constraintVertical_bias="0.252" />
+        app:layout_constraintVertical_bias="0.747" />
 
     <ListView
         android:id="@+id/invoice_items"
