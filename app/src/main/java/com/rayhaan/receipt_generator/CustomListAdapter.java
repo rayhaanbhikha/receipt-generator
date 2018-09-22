@@ -30,7 +30,7 @@ public class CustomListAdapter extends ArrayAdapter<Item> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         String description = getItem(position).getDescription();
-        Double price = getItem(position).getPrice();
+        String price = getItem(position).getPrice();
 
         Item item = new Item(price, description);
 

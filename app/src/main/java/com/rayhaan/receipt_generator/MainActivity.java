@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private AlertDialog dialog;
     private EditText etPrice;
     private EditText etDesc;
+    private ArrayList<Item> invoiceList;
+    private CustomListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,20 +29,20 @@ public class MainActivity extends AppCompatActivity {
 
         ListView mListView = (ListView) findViewById(R.id.invoice_items);
 
-        Item item1 = new Item(5.00, "Gold dress");
-        Item item2 = new Item(45.00, "Blue dress with Lining");
-        Item item3 = new Item(53.00, "Pink dress repair");
-        Item item4 = new Item(70.00, "silver dress with embroidery");
+        Item item1 = new Item("£5.00", "Gold dress");
+        Item item2 = new Item("£45.00", "Blue dress with Lining");
+        Item item3 = new Item("£53.00", "Pink dress repair");
+        Item item4 = new Item("£70.00", "silver dress with embroidery");
 
 
-        ArrayList<Item> invoiceList = new ArrayList<>();
+        invoiceList = new ArrayList<>();
         invoiceList.add(item1);
         invoiceList.add(item2);
         invoiceList.add(item3);
         invoiceList.add(item4);
 
 
-        CustomListAdapter adapter = new CustomListAdapter(this, R.layout.row_item, invoiceList);
+        adapter = new CustomListAdapter(this, R.layout.row_item, invoiceList);
 
         mListView.setAdapter(adapter);
     }
@@ -56,9 +58,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitItem(View view) {
-        dialog.cancel();
-        Toast.makeText(MainActivity.this, "DIALOG SUBMITTED", Toast.LENGTH_LONG).show();
-        System.out.println("HELLO" + etPrice.getText().toString() + " : " + etDesc.getText().toString());
+        String price = etPrice.getText().toString();
+        String desc = etDesc.getText().toString();
+        if(price.isEmpty() || desc.isEmpty()){
+            Toast.makeText(MainActivity.this, "Please fill in empty fields", Toast.LENGTH_LONG).show();
+        } else  {
+            dialog.cancel();
+            Toast.makeText(MainActivity.this, "ITEM SUBMITTED", Toast.LENGTH_SHORT).show();
+            addItemToInvoiceList(price, desc);
+        }
+    }
+
+    public void addItemToInvoiceList(String price, String desc){
+        Item newItem = new Item("£"+price, desc);
+        invoiceList.add(newItem);
+        adapter.notifyDataSetChanged();
     }
 
 

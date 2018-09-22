@@ -1,10 +1,10 @@
 package com.rayhaan.receipt_generator;
 
 public class Item {
-    private Double price;
+    private String price;
     private String description;
 
-    public Item(Double price, String description) {
+    public Item(String price, String description) {
         this.price = price;
         this.description = description;
     }
@@ -13,7 +13,7 @@ public class Item {
         return description;
     }
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 }
