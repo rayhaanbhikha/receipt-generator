@@ -23,9 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="5"
-            android:paddingTop="4dp"
-            android:paddingLeft="4dp"
-            android:background="@android:color/holo_green_dark"/>
+            android:paddingTop="4dp" />
 
         <View
             android:id="@+id/divider"
@@ -40,7 +38,6 @@
             android:layout_weight="1"
             android:paddingLeft="10dp"
             android:paddingStart="10dp"
-            android:paddingTop="4dp"
-            android:background="@android:color/holo_orange_dark"/>
+            android:paddingTop="4dp" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
