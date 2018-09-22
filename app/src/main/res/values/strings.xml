@@ -8,4 +8,6 @@
     <string name="total">Total</string>
     <string name="cancel">Cancel</string>
     <string name="accept">Accept</string>
+    <string name="item">Item</string>
+    <string name="price">Price</string>
 </resources>
