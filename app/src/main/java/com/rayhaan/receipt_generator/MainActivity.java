@@ -1,15 +1,23 @@
 package com.rayhaan.receipt_generator;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    private AlertDialog dialog;
+    private EditText etPrice;
+    private EditText etDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,4 +44,22 @@ public class MainActivity extends AppCompatActivity {
 
         mListView.setAdapter(adapter);
     }
+
+    public void openDialog(View view) {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+        View mView = getLayoutInflater().inflate(R.layout.add_new_item_dialog, null);
+        etPrice = (EditText) mView.findViewById(R.id.dialog_price);
+        etDesc = (EditText) mView.findViewById(R.id.dialog_description);
+        mBuilder.setView(mView);
+        dialog = mBuilder.create();
+        dialog.show();
+    }
+
+    public void submitItem(View view) {
+        dialog.cancel();
+        Toast.makeText(MainActivity.this, "DIALOG SUBMITTED", Toast.LENGTH_LONG).show();
+        System.out.println("HELLO" + etPrice.getText().toString() + " : " + etDesc.getText().toString());
+    }
+
+
 }
