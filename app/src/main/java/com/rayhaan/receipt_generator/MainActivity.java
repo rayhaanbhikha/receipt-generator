@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: Started.");
         totatPrice = (TextView) findViewById(R.id.total_price);
-        ListView mListView = (ListView) findViewById(R.id.invoice_items);
+        final ListView mListView = (ListView) findViewById(R.id.invoice_items);
         invoiceList = new ArrayList<>();
 
         invoiceList.add(new Item("£5.00", "Gold dress"));
@@ -44,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
         adapter = new CustomListAdapter(this, R.layout.row_item, invoiceList);
 
         mListView.setAdapter(adapter);
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                // dialog box to appear with yes and no question.
+                removeItemFromInvoiceList(position);
+                return true;
+            }
+        });
     }
 
     public void openDialog(View view) {
@@ -84,5 +93,10 @@ public class MainActivity extends AppCompatActivity {
         totatPrice.setText(totalSum);
     }
 
+    public void removeItemFromInvoiceList(int position) {
+        invoiceList.remove(position);
+        adapter.notifyDataSetChanged();
+        calculateTotal();
+    }
 
 }
