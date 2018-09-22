@@ -16,4 +16,8 @@ public class Item {
     public String getPrice() {
         return price;
     }
+
+    public Double getRealPrice() {
+        return Double.parseDouble(price.substring(1));
+    }
 }

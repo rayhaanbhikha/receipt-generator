@@ -7,8 +7,9 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="421dp"
+        android:layout_height="350dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -38,6 +39,50 @@
             android:layout_height="3dp"
             android:background="#aaa"
             app:layout_constraintTop_toBottomOf="@id/invoice_items" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="16dp">
+
+            <TextView
+                android:id="@+id/total_price"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:paddingTop="4dp"
+                android:paddingLeft="4dp"
+                android:text="@string/initial_total"
+                android:background="@android:color/holo_green_dark"/>
+
+            <View
+                android:id="@+id/text-divider"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:background="#aaa" />
+
+            <TextView
+                android:id="@+id/total-description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="4dp"
+                android:text="@string/total"
+                android:background="@android:color/holo_orange_dark"/>
+        </LinearLayout>
+
+
+
+
+
 
     </LinearLayout>
 

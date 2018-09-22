@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,28 +22,28 @@ public class MainActivity extends AppCompatActivity {
     private EditText etDesc;
     private ArrayList<Item> invoiceList;
     private CustomListAdapter adapter;
+    private String total;
+    private TextView totatPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: Started.");
-
+        totatPrice = (TextView) findViewById(R.id.total_price);
         ListView mListView = (ListView) findViewById(R.id.invoice_items);
+        invoiceList = new ArrayList<>();
 
         Item item1 = new Item("£5.00", "Gold dress");
         Item item2 = new Item("£45.00", "Blue dress with Lining");
         Item item3 = new Item("£53.00", "Pink dress repair");
         Item item4 = new Item("£70.00", "silver dress with embroidery");
-
-
-        invoiceList = new ArrayList<>();
         invoiceList.add(item1);
         invoiceList.add(item2);
         invoiceList.add(item3);
         invoiceList.add(item4);
 
-
+        calculateTotal();
         adapter = new CustomListAdapter(this, R.layout.row_item, invoiceList);
 
         mListView.setAdapter(adapter);
@@ -72,7 +74,17 @@ public class MainActivity extends AppCompatActivity {
     public void addItemToInvoiceList(String price, String desc){
         Item newItem = new Item("£"+price, desc);
         invoiceList.add(newItem);
+        calculateTotal();
         adapter.notifyDataSetChanged();
+    }
+
+    public void calculateTotal() {
+        Double total = 0d;
+        for(Item i : invoiceList){
+            total += i.getRealPrice();
+        }
+        String totalSum = "£"+total.toString();
+        totatPrice.setText(totalSum);
     }
 
 
