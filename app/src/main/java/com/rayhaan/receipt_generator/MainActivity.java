@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         calculateTotal();
         adapter = new CustomListAdapter(this, R.layout.row_item, invoiceList);
 
+        View headerView = getLayoutInflater().inflate(R.layout.header, mListView, false);
+        mListView.addHeaderView(headerView);
+
+
         mListView.setAdapter(adapter);
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
