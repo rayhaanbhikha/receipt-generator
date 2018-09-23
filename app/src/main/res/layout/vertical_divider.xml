@@ -1,0 +1,6 @@
+<View
+    android:id="@+id/divider"
+    android:layout_width="3dp"
+    android:layout_height="match_parent"
+    android:background="#aaa"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

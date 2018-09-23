@@ -4,12 +4,9 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         View headerView = getLayoutInflater().inflate(R.layout.header, mListView, false);
         mListView.addHeaderView(headerView);
         // FOOTER
-        View footerView = getLayoutInflater().inflate(R.layout.final_row, mListView, false);
+        View footerView = getLayoutInflater().inflate(R.layout.footer, mListView, false);
         mListView.addFooterView(footerView);
         totalPrice = footerView.findViewById(R.id.total_price);
 
@@ -68,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openDialog(View view) {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
-        View mView = getLayoutInflater().inflate(R.layout.add_new_item_dialog, null);
+        View mView = getLayoutInflater().inflate(R.layout.dialog, null);
         etPrice = (EditText) mView.findViewById(R.id.dialog_price);
         etDesc = (EditText) mView.findViewById(R.id.dialog_description);
         mBuilder.setView(mView);

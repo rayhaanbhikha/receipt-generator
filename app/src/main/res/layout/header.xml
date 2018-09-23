@@ -22,11 +22,8 @@
         android:textColor="@android:color/black"
         android:textStyle="bold"
         />
-    <View
-        android:id="@+id/divider"
-        android:layout_width="3dp"
-        android:layout_height="match_parent"
-        android:background="#aaa" />
+
+    <include layout="@layout/vertical_divider" />
 
     <TextView
         android:id="@+id/item_header"
