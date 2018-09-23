@@ -31,22 +31,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate: Started.");
-        totatPrice = (TextView) findViewById(R.id.total_price);
-        final ListView mListView = (ListView) findViewById(R.id.invoice_items);
-        invoiceList = new ArrayList<>();
 
+        totatPrice = (TextView) findViewById(R.id.total_price);
+
+        final ListView mListView = (ListView) findViewById(R.id.invoice_items);
+        // HEADER
+        View headerView = getLayoutInflater().inflate(R.layout.header, mListView, false);
+        mListView.addHeaderView(headerView);
+        // FOOTER
+        View footerView = getLayoutInflater().inflate(R.layout.final_row, mListView, false);
+        mListView.addFooterView(footerView);
+
+        invoiceList = new ArrayList<>();
         invoiceList.add(new Item("£5.00", "Gold dress"));
         invoiceList.add(new Item("£45.30", "Blue dress with Lining"));
         invoiceList.add(new Item("£53.07", "Pink dress repair"));
         invoiceList.add(new Item("£70.00", "silver dress with embroidery"));
 
 
-        calculateTotal();
+//        calculateTotal();
         adapter = new CustomListAdapter(this, R.layout.row_item, invoiceList);
-
-        View headerView = getLayoutInflater().inflate(R.layout.header, mListView, false);
-        mListView.addHeaderView(headerView);
 
 
         mListView.setAdapter(adapter);
@@ -57,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
     }
 
     public void openDialog(View view) {

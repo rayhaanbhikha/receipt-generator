@@ -32,17 +32,6 @@
 
         </ListView>
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="#aaa"
-            app:layout_constraintTop_toBottomOf="@id/invoice_items" />
-
-        <include layout="@layout/total_row">
-
-        </include>
-
     </LinearLayout>
 
     <Button
