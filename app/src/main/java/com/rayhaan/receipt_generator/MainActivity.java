@@ -25,14 +25,12 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Item> invoiceList;
     private CustomListAdapter adapter;
     private String total;
-    private TextView totatPrice;
+    private TextView totalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        totatPrice = (TextView) findViewById(R.id.total_price);
 
         final ListView mListView = (ListView) findViewById(R.id.invoice_items);
         // HEADER
@@ -41,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         // FOOTER
         View footerView = getLayoutInflater().inflate(R.layout.final_row, mListView, false);
         mListView.addFooterView(footerView);
+        totalPrice = footerView.findViewById(R.id.total_price);
 
         invoiceList = new ArrayList<>();
         invoiceList.add(new Item("£5.00", "Gold dress"));
@@ -51,17 +50,9 @@ public class MainActivity extends AppCompatActivity {
         invoiceList.add(new Item("£45.30", "Blue dress with Lining"));
         invoiceList.add(new Item("£53.07", "Pink dress repair"));
         invoiceList.add(new Item("£70.00", "silver dress with embroidery"));
-        invoiceList.add(new Item("£5.00", "Gold dress"));
-        invoiceList.add(new Item("£45.30", "Blue dress with Lining"));
-        invoiceList.add(new Item("£53.07", "Pink dress repair"));
-        invoiceList.add(new Item("£70.00", "silver dress with embroidery"));
-        invoiceList.add(new Item("£5.00", "Gold dress"));
-        invoiceList.add(new Item("£45.30", "Blue dress with Lining"));
-        invoiceList.add(new Item("£53.07", "Pink dress repair"));
-        invoiceList.add(new Item("£70.00", "silver dress with embroidery"));
 
 
-//        calculateTotal();
+        calculateTotal();
         adapter = new CustomListAdapter(this, R.layout.row_item, invoiceList);
 
 
@@ -111,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             total += i.getRealPrice();
         }
         String totalSum = "£"+total.toString();
-        totatPrice.setText(totalSum);
+        totalPrice.setText(totalSum);
     }
 
     public void removeItemFromInvoiceList(int position) {
