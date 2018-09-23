@@ -7,7 +7,7 @@
     <string name="initial_total">£0.00</string>
     <string name="total">Total</string>
     <string name="cancel">Cancel</string>
-    <string name="accept">Accept</string>
+    <string name="accept">Delete</string>
     <string name="item">Item</string>
     <string name="price">Price</string>
     <string name="complete">Complete</string>

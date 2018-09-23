@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,18 +45,17 @@ public class MainActivity extends AppCompatActivity {
         invoiceList = new ArrayList<>();
         invoiceList.add(new Item("£5.00", "Gold dress"));
         invoiceList.add(new Item("£45.30", "Blue dress with Lining"));
-        invoiceList.add(new Item("£53.07", "Pink dress repair"));
+        invoiceList.add(new Item("£534.07", "Pink dress repair"));
         invoiceList.add(new Item("£70.00", "silver dress with embroidery"));
         invoiceList.add(new Item("£5.00", "Gold dress"));
-        invoiceList.add(new Item("£45.30", "Blue dress with Lining"));
+        invoiceList.add(new Item("£4535.30", "Blue dress with Lining"));
         invoiceList.add(new Item("£53.07", "Pink dress repair"));
         invoiceList.add(new Item("£70.00", "silver dress with embroidery"));
 
 
         calculateTotal();
+
         adapter = new CustomListAdapter(this, R.layout.row_item, invoiceList);
-
-
         mListView.setAdapter(adapter);
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -64,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
     }
 
     public void openDialog(View view) {
@@ -101,12 +99,12 @@ public class MainActivity extends AppCompatActivity {
         for(Item i : invoiceList){
             total += i.getRealPrice();
         }
-        String totalSum = "£"+total.toString();
+        String totalSum = "£"+String.format(Locale.ENGLISH,"%.2f", total);
         totalPrice.setText(totalSum);
     }
 
     public void removeItemFromInvoiceList(int position) {
-        invoiceList.remove(position);
+        invoiceList.remove(position - 1);
         adapter.notifyDataSetChanged();
         calculateTotal();
     }
